@@ -1,4 +1,4 @@
-class kubectl_rails_runner
+class KubectlRailsRunner
   def self.run_command
     puts "enter the command here"
   end
