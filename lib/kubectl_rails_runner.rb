@@ -14,6 +14,14 @@ class KubectlRailsRunner
     end
     pods_array.shift
     pods_array
+  
+    pods_array = pods_array.map do |pod| 
+      if pod[0].start_with? "frontend" and pod[2].eql? "Running"
+        pod[0]
+      end
+    end
+
+    pods_array.compact
   end
 
   def self.get_all_pods
