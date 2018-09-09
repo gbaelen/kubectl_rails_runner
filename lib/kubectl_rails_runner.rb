@@ -7,8 +7,8 @@ class KubectlRailsRunner
     @pod       = pod
   end
 
-  def self.get_pods(namespace)
-    pods       = `kubectl get pods --namespace=#{@namespace}`
+  def get_pods(namespace)
+    pods       = `kubectl get pods --namespace=#{namespace}`
     pods_array = pods.split("\n").map do |s| 
       s.gsub(/\s+/m, ' ').strip.split(" ")
     end
