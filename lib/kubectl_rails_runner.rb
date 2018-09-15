@@ -38,7 +38,7 @@ class KubectlRailsRunner
   end
 
   def connect_to_rails
-    p `kubectl --namespace=#{self.namespace} exec -it #{self.pod} -c webapp -- rails c`
+    exec("kubectl --namespace=#{self.namespace} exec -it #{self.pod} -c webapp -- rails c")
   end
 
   def run_command(ruby_code)
