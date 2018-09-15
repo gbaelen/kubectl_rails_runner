@@ -7,7 +7,7 @@ class KubectlRailsRunner
     @pod       = pod
   end
 
-  def self.get_pods(namespace)
+  def self.get_frontend_pods(namespace)
     pods       = `kubectl get pods --namespace=#{namespace}`
     pods_array = pods.split("\n").map do |s| 
       s.gsub(/\s+/m, ' ').strip.split(" ")
@@ -35,6 +35,10 @@ class KubectlRailsRunner
 
   def self.init(namespace, pod)
     return KubectlRailsRunner.new(namespace, pod)
+  end
+
+  def connect_to_rails
+    p `kubectl --namespace=#{self.namespace} exec -it #{self.pod} -c webapp -- rails c`
   end
 
   def run_command(ruby_code)
